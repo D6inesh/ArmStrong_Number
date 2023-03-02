@@ -1,0 +1,54 @@
+import java.util.Scanner;
+class  ArmStrong{
+	/*1, 2, 3, 4, 5, 6, 7, 8, 9, 153, 370, 371, 407, 1634, 8208, 9474, 54748
+
+	            these numbers are ArmStrong Numbers
+	*/
+
+	public String checkArmStrong(int num){
+		String status = " ";
+		int arm = 0;
+		int t1 = num;
+		int length = 0;
+		while(t1>0){
+			length = length + 1;
+			t1 = t1/10;
+		}
+		System.out.println(length);
+		if(num<0){                       //This condtion will show you '-1', if you pass negative number...
+			status = status + -1;     
+		}
+		if(length!=4){                  //This condtion will show you '-2', if you pass less or more 
+	        status = status + -2;          //than 4 digit number...
+			
+		}
+        if(length==4){                 // if above two conditon will true, this condition will execute
+		int t2 = num;
+		int rem;
+		while(t2>0){
+			rem = t2%10;
+			int mul = 1;
+			for(int i = 1; i<=length; i++){
+				mul = mul*rem;
+			}
+			arm = arm+mul;
+			t2 = t2/10;
+		 }
+		}
+		if(arm==num){                          //if this number is a armstrong number this will print...
+			status = status +num+ " ArmStrong Number";
+		}
+		if(arm!=num){                               ////if this number is not a armstrong number this will print...
+			status = status +num+ " Not ArmStrong Number";
+		}
+		return status;
+			
+
+	}         
+	public static void main(String[] args){   /// Main Method
+		Scanner sc = new Scanner(System.in);
+		String s = new ArmStrong().checkArmStrong(sc.nextInt());
+		System.out.println(s);
+	}
+	
+}
